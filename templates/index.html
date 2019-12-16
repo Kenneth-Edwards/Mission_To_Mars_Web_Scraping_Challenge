@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission to Mars: Web Scraping Challenge</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Concert+One|Faster+One|Racing+Sans+One|Roboto+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="{{ url_for('static', filename='./css_styles/styles.css') }}" />
+</head>
+<!-- ============================================================================================ -->
+<body style="background-color:rgb(243, 243, 243);">
+    <div class="container" style="align-content: center;">
+        <div class = "container" style="align-content: center;">
+            <div class="jumbotron-fluid text-center" style="background-image: url(./static/css_styles/mars_bkgrd.png); background-size: 100%; height: 350px;">
+                <br><br><br><br><br>
+                <h1 style="color:rgb(255, 217, 0); font-family: 'Faster One', cursive; font-size: 65px;">Mission to Mars</h1>
+                <p>
+                <a style="font-family: 'Roboto Condensed', sans-serif;" class="btn btn-primary btn-lg angry-animate" 
+                href="/scrape" role="button">Click Here to Get New Data</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <br>
+<!-- ============================================================================================ -->
+        <div class = "container" style="align-content: center;">
+            <div class="row" style="align-content: center; border-color: rgb(255, 255, 255);">
+                    <div class="col-12">
+                    <h1 style="font-family: 'Concert One', cursive;">Latest Mars News</h1>
+                    <hr style="border-top: 1px solid rgb(47, 46, 46);">
+                    <p style="font-style: italic; font-weight: bold; color: rgb(246, 11, 11);">{{ description.date }}</p>
+                    <h5><p style="font-weight: bold;">{{ description.title }}</p></h5>
+                    <p>{{ description.news_sum }}</p>  
+                    </div>             
+            </div>
+        </div>
+    <br><br>
+<!-- ============================================================================================ -->
+    <div class="container">
+            <div class="row" style="align-content: center; border-color: rgb(255, 255, 255);">
+                    <div class="col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7">
+                            <div class="img_container">
+                            <h1 style="font-family: 'Concert One', cursive;">Featured NASA Space Image</h1> 
+                            <a href="{{ description.featured_image_url }}">
+                            <img id="img_format" src={{ description.featured_image_url }} alt="Feature Image URL" width="80%">
+                            </div></a>
+                        </div>
+            <div class="col-5 col-sm-5 col-md-5 col-lg-5 col-xl-5">
+                <div class="row" style="align-content: center; border-color: rgb(255, 255, 255);">
+                    <div class="col-12">
+                        <h3 style="font-family: 'Concert One', cursive;">Current Weather on Mars</h3>
+                        <p>{{ description.mars_weather }}</p>
+                    </div>
+                    <div class="col-12">
+                        <h3 style="font-family: 'Concert One', cursive;">Mars Facts</h3>
+                        {{description.mars_facts | safe }}
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        </div>
+<!-- ============================================================================================ -->
+             <br><br>
+             <div class="container">
+             <h2 class="text-center mx-auto;" style="font-family: 'Concert One', cursive;">Images of Mars' Hemispheres</h2>
+             <hr style="border-top: 1px solid rgb(47, 46, 46);">
+             <br>
+                 <div class="row" style="align-content: center; border-color: rgb(255, 255, 255);">
+                   <div class="col">
+                        <p class="text-center mx-auto">
+                            <a style="align-content: center;"
+                            href="{{description.hemisphere_images_urls[0]['img_url']}}">
+                            <img class="about_image image_reduce" 
+                            src="{{description.hemisphere_images_urls[0]['img_url']}}"></a>
+                            <div style="text-align: center; color: rgb(4, 29, 250); font-weight: bold;">{{description.hemisphere_images_urls[0]['title']}}</div>
+                        </p></div>
+                   <div class="col">
+                        <p class="text-center mx-auto">
+                            <a style="align-content: center;"
+                            href="{{description.hemisphere_images_urls[1]['img_url']}}">
+                            <img class="about_image image_reduce" 
+                            src="{{description.hemisphere_images_urls[1]['img_url']}}"></a>
+                            <div style="text-align: center; color: rgb(4, 29, 250); font-weight: bold;">{{description.hemisphere_images_urls[1]['title']}}</div>
+                            </p></div>
+                   <div class="w-100"></div>
+                   <div class="col">
+                        <p class="text-center mx-auto">
+                            <a style="align-content: center;"
+                            href="{{description.hemisphere_images_urls[2]['img_url']}}">
+                            <img class="about_image image_reduce" 
+                            src="{{description.hemisphere_images_urls[2]['img_url']}}"></a>
+                            <div style="text-align: center; color: rgb(4, 29, 250); font-weight: bold;">{{description.hemisphere_images_urls[2]['title']}}</div>
+                            </p></div>
+                   <div class="col">
+                        <p class="text-center mx-auto">
+                            <a style="align-content: center;"
+                            href="{{description.hemisphere_images_urls[3]['img_url']}}">
+                            <img class="about_image image_reduce" 
+                            src="{{description.hemisphere_images_urls[3]['img_url']}}"></a>
+                            <div style="text-align: center; color: rgb(4, 29, 250); font-weight: bold;">{{description.hemisphere_images_urls[3]['title']}}</div>
+                            </p>
+                     </div>
+                 </div>
+             </div>
+<!--  JavaScript -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
