@@ -70,6 +70,7 @@ Used MongoDB with Flask templating to populate my index.html page with all of th
 * Next, I created a route called `/scrape` that imported my `scrape_mars.py` script and then called the `scrape` function.
 
 * Stored the returned values in Mongo as a Python dictionary. See screenshot here:
+
      ![Mars_Mission](screen_shots/mongoDB_collection_document_screenshot.PNG)
   
 
